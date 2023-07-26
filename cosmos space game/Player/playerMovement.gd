@@ -52,15 +52,25 @@ func _physics_process(delta):
 	
 	
 	if(interactionRayCast.is_colliding()):
-		print(interactionRayCast.get_collider().name)
-	
+		# give each interactable a script and a function called _when_interacted
+		# and run interactionRayCast.get_collider()._when_interacted()
+		$CrosshairInteracting.visible = true
+		$interactLable.visible = true
+		$Crosshairidle.visible = false
+		if(Input.is_action_just_pressed("interact")):
+			interactionRayCast.get_collider()._when_interacted(self)
+			pass
+	else:
+		$CrosshairInteracting.visible = false
+		$Crosshairidle.visible = true
+		$interactLable.visible = false
 		
 	
 	velocity += walk_dir *direction* SPEED
 	if(Input.is_action_pressed("stop")):
 		
 		velocity = velocity.move_toward(Vector3.ZERO,0.2)
-	
+		
 	
 	
 

@@ -1,13 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcrtsijt77jpc"]
+[gd_scene load_steps=7 format=3 uid="uid://bcrtsijt77jpc"]
 
 [ext_resource type="PackedScene" uid="uid://d04rtl7n3qgab" path="res://Player/player.tscn" id="1_y30ar"]
-[ext_resource type="Shader" path="res://Scene/main.gdshader" id="2_hhht5"]
 [ext_resource type="Texture2D" uid="uid://cub8vfosarhiu" path="res://Scene/vecteezy_the-panorama-milky-way-galaxy-long-exposure-photograph-with_10452472_165.jpg" id="2_tjoxh"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxpya"]
-render_priority = 0
-shader = ExtResource("2_hhht5")
-shader_parameter/color = Vector3(1, 1, 0)
+[ext_resource type="PackedScene" uid="uid://deh74sxl1nxkr" path="res://Objects/cool_sphere.tscn" id="2_voorq"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sl8mr"]
 panorama = ExtResource("2_tjoxh")
@@ -35,12 +30,11 @@ offset_left = 155.0
 offset_top = 60.0
 offset_right = 340.0
 offset_bottom = 181.0
-text = "heeeee"
 
 [node name="interaction" type="RayCast3D" parent="player/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.424327)
 target_position = Vector3(0, -1.5, 0)
-collision_mask = 2
+collision_mask = 4
 collide_with_areas = true
 
 [node name="space platform" type="Node3D" parent="."]
@@ -87,16 +81,10 @@ use_collision = true
 collision_layer = 2
 outer_radius = 0.720135
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="space platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0789289, -2.4908, -11.0699)
-material_override = SubResource("ShaderMaterial_dxpya")
-transparency = 0.5
-use_collision = true
-collision_layer = 2
-radius = 0.221166
-
 [node name="OmniLight3D" type="OmniLight3D" parent="space platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.73886, -11.0833)
+
+[node name="cool sphere" parent="space platform" instance=ExtResource("2_voorq")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gpfe7")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://deh74sxl1nxkr"]
+
+[ext_resource type="Shader" path="res://Scene/main.gdshader" id="1_lujp8"]
+[ext_resource type="Script" path="res://Objects/Scripts/sphere_interaction.gd" id="2_pq0r7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sl50a"]
+render_priority = 0
+shader = ExtResource("1_lujp8")
+shader_parameter/color = Vector3(0, 2, 2)
+
+[node name="cool sphere" type="CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0789289, -2.4908, -11.0699)
+transparency = 0.5
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+radius = 0.221166
+material = SubResource("ShaderMaterial_sl50a")
+script = ExtResource("2_pq0r7")
