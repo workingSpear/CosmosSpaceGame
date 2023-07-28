@@ -7,6 +7,11 @@ const JUMP_VELOCITY = 4.5
 var look_dir: Vector2
 var mouse_captured: bool = false
 
+
+var held_object: Object
+@onready var hold_position := $Camera3D/hold_position
+
+
 @onready var interactionRayCast: RayCast3D = $Camera3D/interaction
 
 @export_range(0.1, 3.0, 0.1, "or_greater") var camera_sens: float = 1
@@ -59,11 +64,15 @@ func _physics_process(delta):
 		$Crosshairidle.visible = false
 		if(Input.is_action_just_pressed("interact")):
 			interactionRayCast.get_collider()._when_interacted(self)
-			pass
+		if(Input.is_action_just_pressed("pick up") and interactionRayCast.get_collider().is_in_group("grabbable")):
+			held_object = interactionRayCast.get_collider()
 	else:
 		$CrosshairInteracting.visible = false
 		$Crosshairidle.visible = true
 		$interactLable.visible = false
+	
+	if(held_object):
+		held_object.global_position = hold_position.global_position
 		
 	
 	velocity += walk_dir *direction* SPEED

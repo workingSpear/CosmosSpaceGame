@@ -37,6 +37,9 @@ target_position = Vector3(0, -1.5, 0)
 collision_mask = 4
 collide_with_areas = true
 
+[node name="hold_position" type="Node3D" parent="player/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447348, -0.419764, -0.630159)
+
 [node name="space platform" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="space platform"]
@@ -84,7 +87,8 @@ outer_radius = 0.720135
 [node name="OmniLight3D" type="OmniLight3D" parent="space platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.73886, -11.0833)
 
-[node name="cool sphere" parent="space platform" instance=ExtResource("2_voorq")]
+[node name="cool sphere" parent="space platform" groups=["grabbable"] instance=ExtResource("2_voorq")]
+collision_layer = 12
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gpfe7")
